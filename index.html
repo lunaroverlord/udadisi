@@ -1,0 +1,37 @@
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+
+  <script src="js/CustomTooltip.js"></script>
+  <script src="js/libs/coffee-script.js"></script>
+  <script src="js/libs/d3.js"></script>
+  <script type="text/coffeescript" src="coffee/vis.coffee"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $(document).ready(function() {
+          $('#view_selection a').click(function() {
+            var view_type = $(this).attr('id');
+            $('#view_selection a').removeClass('active');
+            $(this).toggleClass('active');
+            toggle_view(view_type);
+            return false;
+          });
+        });
+    });
+  </script>
+</head>
+
+<body>
+    <div id="main" role="main">
+      <div id="view_selection" class="btn-group">
+        <a href="#" id="all" class="btn active">All Grants</a>
+        <a href="#" id="year" class="btn">Grants By Year</a>
+      </div>
+      <div id="vis"></div>
+    </div>
+
+
+  
+</body>
+</html>

@@ -1,0 +1,67 @@
+.bubble_tooltip {
+	position: absolute;
+	top: 100px;
+	left: 100px;
+  -moz-border-radius:5px;
+	border-radius: 5px;
+  border: 2px solid #000;
+	/* background: #222222; */
+  background: #fff;
+	opacity: .9;
+	/* color: #eeeeee; */
+  color: black;
+	padding: 10px;
+	width: 300px;
+height: 100px;
+	font-size: 12px;
+	z-index: 99999;
+}
+
+.bubble_tooltip .title {
+	font-size: 13px;
+}
+
+.bubble_tooltip .name {
+  font-weight:bold;
+}
+
+#strip
+{
+	height: 40px;
+	width: 100%;
+}
+
+.btn
+{
+	color: gray;
+}
+
+h2:after {
+display: inline-block;
+content: "";
+height: 1px;
+background: #D0D0D0 ;
+position: absolute;
+width: 75%;
+top: 50%;
+margin-top: -10px;
+margin-left: 20px;
+}
+div.footer, div.header {
+background:     none repeat scroll 0 0 #000000;
+color:          #000000;
+padding:        3;
+}
+
+#main
+{
+	width: 100%;
+}
+
+#vis
+{
+      width: 100%;
+      height: 300px;
+      clear: both;
+      margin-bottom: 10px;
+}
