@@ -1,6 +1,10 @@
 	height = 300;
 	width = $(window).width();
 
+	$("img").error(function(){
+		$(this).hide();
+	});
+
 	function generate_timeline_json(dates)
 	{
 		var timeline = 
@@ -132,7 +136,7 @@
 			$("#timeline").html("");
 			    createStoryJS({
 				    maptype: "watercolor",
-				width:      '100%',
+				width:      width,
 				height:     '550',
 				source:     timeline_json,
 				embed_id:   'timeline'

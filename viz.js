@@ -60,6 +60,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       .attr("stroke-width", 2)
       .attr("stroke", function(d) {return d3.rgb(fill_color(d.group)).darker();})
       .attr("id", function(d) { return  "bubble_" + d.id; })
+      .on("click", function(d, i) {window.open(d.link, "_blank");} )
       .on("mouseover", function(d, i) {show_details(d, i, this);} )
       .on("mouseout", function(d, i) {hide_details(d, i, this);} );
  
