@@ -12,7 +12,7 @@
   color: black;
 	padding: 10px;
 	width: 300px;
-height: 100px;
+	height: auto;
 	font-size: 12px;
 	z-index: 99999;
 }
@@ -28,6 +28,12 @@ height: 100px;
 #strip
 {
 	height: 40px;
+	width: 100%;
+}
+
+#timeline_block
+{
+	margin-top: 80px;
 	width: 100%;
 }
 

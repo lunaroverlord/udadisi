@@ -14,7 +14,7 @@ else $query = $_POST["query"];
 
 $result = array();
 $mysqli->query('SET CHARACTER SET utf8');
-$res = $mysqli->query("SELECT * FROM articles WHERE UPPER(title) LIKE UPPER('%$query%') OR UPPER(text) LIKE UPPER('%$query%')");
+$res = $mysqli->query("SELECT * FROM articles WHERE UPPER(title) LIKE UPPER('%$query%') OR UPPER(text) LIKE UPPER('%$query%') LIMIT 100");
 while($row = mysqli_fetch_assoc($res))
 {
 	$result[] = $row;

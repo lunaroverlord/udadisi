@@ -7,7 +7,7 @@
 		{
 		    "timeline":
 		    {
-			"headline":"Timeline visualization of articles",
+			"headline":"",
 			"type":"default",
 			"text":"<p>Scrub left or right to see your search results by time</p>",
 			"asset": {
@@ -74,11 +74,13 @@
 				//For bubbles
 				var bubble = new Object();
 				bubble.id = item.id;
-				bubble.total_amount = 1;
+				bubble.total_amount = item.score * 3;
 				bubble.value = 6;
 				bubble.grant_title = item.title;
 				bubble.group = item.category;
 				bubble.start_year = d.getFullYear();
+				bubble.link = item.link;
+				bubble.picture_link = item.picture_link;
 				bubbles.push(bubble);
 
 				//Mark year for the scale
@@ -91,7 +93,7 @@
 				{
 					"startDate": date_string,
 					"headline": item.title,
-					"text":"<p>" + item.text + "</p>",
+					"text":"<p>" + item.text.substring(0, 300) + "...</p>",
 					"tag": item.category,
 					"classname": "category",
 					"asset": {
@@ -131,7 +133,7 @@
 			    createStoryJS({
 				    maptype: "watercolor",
 				width:      '100%',
-				height:     '500',
+				height:     '550',
 				source:     timeline_json,
 				embed_id:   'timeline'
 			    });

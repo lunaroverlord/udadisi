@@ -11,11 +11,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
  
   var center = {x: width / 2, y: height / 2};
  
-  var year_centers = {
-      "2008": {x: width / 3, y: height / 2},
-      "2009": {x: width / 2, y: height / 2},
-      "2010": {x: 2 * width / 3, y: height / 2}
-    };
+  var year_centers = {};
 
   var category_centers = {};
  
@@ -25,7 +21,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
  
   function custom_chart(data) {
     var max_amount = d3.max(data, function(d) { return parseInt(d.total_amount, 10); } );
-    radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount * 20]).range([1, 85]);
+    radius_scale = d3.scale.pow().exponent(0.5).domain([1, max_amount * 5]).range([2, 85]);
  
     //create node objects from original data
     //that will serve as the data behind each
@@ -36,6 +32,8 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
         id: d.id,
         radius: radius_scale(parseInt(d.total_amount, 10)),
         value: d.total_amount,
+	link: d.link,
+	picture: d.picture_link,
         name: d.grant_title,
         org: d.organization,
         group: d.group,
@@ -165,8 +163,8 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
  
   function show_details(data, i, element) {
     d3.select(element).attr("stroke", "black");
-    var content = "<span class=\"name\">Title:</span><span class=\"value\"> " + data.name + "</span><br/>";
-    content +="<span class=\"name\">Amount:</span><span class=\"value\"> $" + data.value + "</span><br/>";
+    var content ="<img alt='Preview picture' width='100%' src='" + data.picture + "'/><br/>";
+    content += "<span class=\"name\"></span><span class=\"value\"> " + data.name + "</span><br/>";
     content +="<span class=\"name\">Year:</span><span class=\"value\"> " + data.year + "</span>";
     tooltip.showTooltip(content, d3.event);
   }
@@ -207,9 +205,10 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
     };
   my_mod.change_data = function(data)
   {
-	  nodes = [];
 	$("#vis").html("");
+	  nodes = [];
 	  custom_chart(data);
+	  start();
   }
  
   return my_mod;
