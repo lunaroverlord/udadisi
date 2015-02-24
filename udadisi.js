@@ -1,10 +1,15 @@
-	height = 300;
+	height = 300; //change to height
 	width = $(window).width();
 
+	bubblesInited = false;
+	    view_type = "all";
+
+	//Hide image if it can't be loaded in the bubble tooltip
 	$("img").error(function(){
 		$(this).hide();
 	});
 
+	//Single timeline entry
 	function generate_timeline_json(dates)
 	{
 		var timeline = 
@@ -35,6 +40,7 @@
 		return timeline;
 	}
 
+	//Delay tool
 	var delay = (function(){
 	  var timer = 0;
 	  return function(callback, ms){
@@ -43,6 +49,8 @@
 	  };
 	})();
 
+	//Currently splits the centers equally across the width of the window
+	//TODO: Make it arrange centers in 2 dimensions
 	function getOptimalCoords(objects)
 	{
 		var count = Object.keys(objects).length;
@@ -59,11 +67,15 @@
 
 	function processInput()
 	{
+		//No processing for unreasonably short queries
 		if($("#search").val().length < 3)
 			return;
 		var bubbles = Array();
 		$("#results").html("");
-		$.post("data.php", {query: $("#search").val()},  function(data)
+		
+		//Get data from the server
+		$.ajax({type: "POST", url:"data.php", data:{query: $("#search").val()},
+			dataType: "json", async: true, success: function(data)
 		{
 			if(data.length == 0)
 				return;
@@ -72,7 +84,6 @@
 			var timeline_dates = [];
 			$.each(data, function(i, item)
 			{
-				//$("#results").append(item.title + '<br/>');
 				var d = new Date(item.date * 1000);
 
 				//For bubbles
@@ -87,7 +98,7 @@
 				bubble.picture_link = item.picture_link;
 				bubbles.push(bubble);
 
-				//Mark year for the scale
+				//Mark which years are in the set
 				years[d.getFullYear()] = 1;
 				categories[item.category] = 1;
 
@@ -110,11 +121,11 @@
 
 			});
 
+			//Set coordinates for where the bubbles should drift to
 			custom_bubble_chart.set_year_centers(getOptimalCoords(years));
 			custom_bubble_chart.set_category_centers(getOptimalCoords(categories));
 
-			console.log(getOptimalCoords(categories));
-			//Strips
+			//Generate menus
 			var catCount = Object.keys(years).length;
 			var catWidth = width / catCount - 10;
 			$("#strip_years").html("");
@@ -130,8 +141,20 @@
 				$("#strip_categories").append($("<div style='text-align: center; width:" + catWidth + "px;float:left;' >" + cat + "</div>"));
 			}
 
-			custom_bubble_chart.change_data(bubbles);
+			//Feed data into the D3 bubbles
+			if(bubblesInited)
+			{
+				custom_bubble_chart.change_data(bubbles);
+				custom_bubble_chart.toggle_view(view_type);
+			}
+			else 
+			{
+				custom_bubble_chart.init(bubbles);
+				custom_bubble_chart.toggle_view(view_type);
+				bubblesInited = true;
+			}
 
+			//Feed the data into the timeline
 			var timeline_json = generate_timeline_json(timeline_dates);
 			$("#timeline").html("");
 			    createStoryJS({
@@ -142,32 +165,46 @@
 				embed_id:   'timeline'
 			    });
 
-		}, "json");
+		}});
 	}
 
 
 	$(document).ready(function()
 	{
+		/* Default dataset from CSV
+		 *
 		d3.csv("data/gates_money.csv", function(data) {
 			custom_bubble_chart.init(data);
 			custom_bubble_chart.toggle_view('all');
 		});
+		*/
 
+		//Search box events and defaults
 		$("#search").keyup(function(){ delay(processInput, 400); });
+		$("#search").val("brck");
+		processInput();
 
-		  $('#view_selection a').click(function() {
-		    var view_type = $(this).attr('id');
+		$("#strip_categories").hide(); $("#strip_years").hide();
+
+
+		//Visualization menu
+		  $('#view_selection a').click(function()
+		  {
+		    view_type = $(this).attr('id');
 		    $('#view_selection a').removeClass('active');
 		    $(this).toggleClass('active');
 		    if(view_type == "time")
 		    {
+			    //Timeline
 			    $("#strip_categories").hide();
 			    $("#strip_years").hide();
 			    $("#vis").hide();
 			    $("#timeline").show();
+			    $(window).trigger('resize');
 		    }
 		    else
 		    {
+			    //Bubbles
 			    $("#timeline").hide();
 			    $("#vis").show();
 			    custom_bubble_chart.toggle_view(view_type);
