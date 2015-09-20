@@ -1,5 +1,8 @@
-
 <?php
+
+/*
+ * Scripts for scraping data from various sources. Mainly due to Mateusz Rogozinski
+ */
 
 
 date_default_timezone_set("UTC");

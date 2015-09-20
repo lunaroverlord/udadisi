@@ -68,32 +68,6 @@
 		 <div id="timeline"></div>
 		</div>
 	</div>
-      <!-- <nav class="navbar navbar-inverse">
-         <div class="container-fluid">
-            <div class="navbar-header">
-               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>                     
-               </button>
-                <a class="navbar-brand" href="#">Udadisi</a>
-             </div>
-           <div class="collapse navbar-collapse" id="myNavbar">
-               <ul class="nav navbar-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">Contact</a></li>
-               </ul>
-                  <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#"><span class="glyphicon glyphicon-icon-twitter-t"></span> Sign Up</a></li>
-                  <li><a href="#"><span class="glyphicon glyphicon-icon-facebook"></span> Login</a></li>
-                  </ul> 
-            </div>
-         </div>
-         </nav>
-         <h2 class="logo"> 
-         <img src="http://s1.postimg.org/c6gfcsinz/dcrr.jpg" style="width:150px;height:150px;margin-left:50px;">
-         </h2>-->
       <div class="container">
          <!-- <center><img src="http://flowingdata.com/wp-content/uploads/2012/09/His-and-Hers-Colors-by-Stephen-Von-Worley-620x454.png" style="width:90%;height:90%;"></center> -->
       </div>

@@ -1,3 +1,7 @@
+/*
+ * D3 control for udadisi
+ */
+
 var custom_bubble_chart = (function(d3, CustomTooltip) {
   "use strict";
  
