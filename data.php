@@ -12,9 +12,8 @@ ini_set('display_errors', 1);
 //$mysqli = new mysqli("localhost", "root", "", "albatross");
 //$mysqli = new mysqli("localhost", "root", "", "udadisi");
 
-//Please be ethical with my database
-//@github trolls: this is fine, you have reduced privileges with this DB user
-$mysqli = new mysqli("lunaroverlord.cn3imgfeosz7.eu-west-1.rds.amazonaws.com", "maksis", "esmugejs", "udadisi");
+//Database connection
+$mysqli = new mysqli("localhost", "username", "password", "udadisi");
 
 // Default search term for testing
 if(!isset($_POST["query"]))

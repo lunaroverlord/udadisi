@@ -18,6 +18,7 @@
    </head>
 
    <body>
+	    <div style="background: #efd;position: relative; top: 4px; 30px; width: 100%; height: 25px; text-align: center; font-size: 15px;"><span style="color: green; font-weight: bold;">Note:</span> Udadisi has two commercial implementations: <a href="https://energyarchipelago.com/#/trends">Energy Archipelago</a> and <a href="http://www.udadisi.com/#/">udadisi.com</a></div>
             <nav class="navbar navbar-default">
          <div class="container-fluid">
             <div class="navbar-header">
